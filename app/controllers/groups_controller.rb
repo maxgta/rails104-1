@@ -17,7 +17,12 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    @group.save
+
+    if @group.save
+      redirect_to group_path
+    else
+      render :new
+    end
 
     redirect_to groups_path
   end
